@@ -17,7 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.apps import apps
 
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('csrf/', views.csrf),
+    path('ping/', views.ping),
+    path("api/", include("oscarapi.urls")),
     path('', include(apps.get_app_config('oscar').urls[0])),
 ]
