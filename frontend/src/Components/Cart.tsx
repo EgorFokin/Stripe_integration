@@ -2,13 +2,13 @@ import { useEffect, useReducer, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import CartItem from "./CartItem";
-import Button from "@mui/material/Button";
-import { loadStripe } from "@stripe/stripe-js";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [currency, setCurrency] = useState("");
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
   async function retrivecartItems() {
     let response = await fetch(`${import.meta.env.VITE_API_HOST}/api/basket/`, {
       method: "GET",
@@ -28,7 +28,46 @@ const Cart = () => {
   }
 
   async function checkout() {
-    const response = await fetch(
+    if (cartItems.length === 0) return;
+    setCheckoutLoading(true);
+    let response = await fetch(`${import.meta.env.VITE_API_HOST}/api/basket/`, {
+      method: "GET",
+      headers: {},
+      credentials: "include",
+    });
+    const basket_data = await response.json();
+    const data = {
+      basket: basket_data["url"],
+      guest_email: "foo@example.com",
+      total: basket_data["total_incl_tax"],
+      shipping_method_code: "free-shipping",
+      shipping_address: {
+        country: "http://127.0.0.1:8000/api/countries/NL/",
+        first_name: "Henk",
+        last_name: "Van den Heuvel",
+        line1: "Roemerlaan 44",
+        line2: "",
+        line3: "",
+        line4: "Kroekingen",
+        notes: "",
+        phone_number: "+31 26 370 4887",
+        postcode: "7777KK",
+        state: "Gerendrecht",
+        title: "Mr",
+      },
+    };
+
+    response = await fetch(`${import.meta.env.VITE_API_HOST}/api/checkout/`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": localStorage.getItem("csrf") ?? "",
+      },
+      body: JSON.stringify(data),
+    });
+
+    response = await fetch(
       `${import.meta.env.VITE_API_HOST}/create-checkout-session`,
       {
         method: "POST",
@@ -59,14 +98,20 @@ const Cart = () => {
         sx={{ width: "100%" }}
       >
         <div style={{ marginLeft: "auto" }}>
-          <Button variant="contained" onClick={checkout}>
+          <LoadingButton
+            loading={checkoutLoading}
+            variant="contained"
+            onClick={checkout}
+          >
             Checkout
-          </Button>
+          </LoadingButton>
           <h4>Total amount: {totalAmount + (currency ?? "")}</h4>
         </div>
       </Box>
       <Box sx={{ width: "100%" }}>
-        <h1>{cartItems.length === 0 ? "Your cart is empty" : ""}</h1>
+        <h1 style={{ margin: 10 }}>
+          {cartItems.length === 0 ? "Your cart is empty" : ""}
+        </h1>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {cartItems.map((item, index) => (
             <Grid xs={6} key={index}>

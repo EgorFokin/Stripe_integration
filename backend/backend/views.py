@@ -1,6 +1,7 @@
 
 from django.http import JsonResponse
 from django.conf import settings
+from django.middleware.csrf import get_token
 from rest_framework.decorators import api_view
 import stripe
 import requests
@@ -45,3 +46,7 @@ def create_checkout_session(request):
             return JsonResponse({'url': checkout_session['url']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+
+def csrf(request):
+    return JsonResponse({'csrfToken': get_token(request)})

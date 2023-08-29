@@ -11,10 +11,25 @@ const App = () => {
   const queryParameters = new URLSearchParams(window.location.search);
   const message = queryParameters.get("message");
 
+  const API_HOST = "http://localhost:8000";
+
+  async function setCsrfToken() {
+    const response = await fetch(`${API_HOST}/csrf`, {
+      method: "GET",
+      headers: {},
+      credentials: "include",
+    });
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    localStorage.setItem("csrf", data["csrfToken"]);
+  }
+
   useEffect(() => {
     const messageTimer = setTimeout(() => {
       setShowMessage(false);
     }, 5000);
+    setCsrfToken();
     return () => {
       clearTimeout(messageTimer);
     };

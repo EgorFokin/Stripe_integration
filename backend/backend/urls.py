@@ -20,6 +20,7 @@ from django.apps import apps
 from . import views
 
 urlpatterns = [
+    path("csrf", views.csrf),
     path("create-checkout-session", views.create_checkout_session),
     path("api/", include("oscarapi.urls")),
 ]

@@ -40,6 +40,7 @@ const Product = ({ id, url }: Props) => {
   async function moveToCart() {
     await fetch(`${import.meta.env.VITE_API_HOST}/api/basket/add-product/`, {
       method: "POST",
+
       cache: "default",
       body: JSON.stringify({
         url: url,
@@ -48,6 +49,7 @@ const Product = ({ id, url }: Props) => {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        "X-CSRFToken": localStorage.getItem("csrf") ?? "",
       },
     });
   }
