@@ -42,3 +42,14 @@
     >npm run dev
 
 12. open http://localhost:5173
+
+# Build Plan
+
+1. Understand the tools used in the project
+2. Make a build plan
+3. Set up development environment
+4. Create a basic shop website using django-oscar and react
+5. Integrate Stripe into the project
+6. Conduct testing
+7. Make documentation
+8. Publish the project on github
