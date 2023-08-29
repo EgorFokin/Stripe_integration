@@ -19,9 +19,7 @@ const App = () => {
       headers: {},
       credentials: "include",
     });
-    console.log(response);
     const data = await response.json();
-    console.log(data);
     localStorage.setItem("csrf", data["csrfToken"]);
   }
 
