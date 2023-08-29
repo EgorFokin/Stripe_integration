@@ -3,3 +3,7 @@ django_oscar==3.2
 djangorestframework==3.14.0
 Requests==2.31.0
 stripe==6.1.0
+django-cors-headers==4.2.0
+sorl-thumbnail==12.9.0
+django-oscar-api==3.2.0
+pycountry==22.3.5

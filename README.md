@@ -5,33 +5,40 @@
     >git clone https://github.com/EgorFokin/Stripe_integration
 
 2. cd to stripe-integration folder
-    >cd stripe-integration
+    >cd Stripe_integration
     
 3. create virtual environment:
    
    >python -m venv venv
 
-   >venv/Scripts/activate
+   >venv\Scripts\activate
 
-4. install dependencies:
+   or
+   
+   >venv\Scripts\activate.bat
 
-    >npm i
+4. install python dependencies:
 
     >pip install -r requirements.txt
 
-5. load test data into backend:
+5. run migrations:
+    >python backend\manage.py migrate
 
-    >python backend/manage.py oscar_import_catalogue backend/fixtures/books.hacking.csv
+7. load test data into backend:
 
-    >python backend/manage.py oscar_populate_countries
+    >python backend\manage.py oscar_import_catalogue backend\fixtures\books.hacking.csv
 
-6. run migrations:
-    >python backend/manage.py migrate
+    >python backend\manage.py oscar_populate_countries
 
-7. run django and vite:
+8. run django:
    
-    >python manage.py runserver  
+    >python backend\manage.py runserver  
 
+9. cd to frontend folder
+    >cd frontend
+10. install npm requirenments
+    >npm i
+11. run vite
     >npm run dev
 
-8. open http://localhost:5173
+12. open http://localhost:5173
