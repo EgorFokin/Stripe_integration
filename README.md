@@ -54,7 +54,7 @@
 
 12. open http://localhost:5173
 
-# Project Architecture
+# Solution Architecture
 
 ![Alt text](ProjectArchitectureImg.png)
 
