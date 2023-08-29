@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
 import Grid from "@mui/material/Unstable_Grid2";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 
 const ProductGrid = () => {
@@ -26,7 +25,7 @@ const ProductGrid = () => {
     <Box sx={{ width: "100%" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {products.map((item) => (
-          <Grid xs={6}>
+          <Grid xs={6} key={item["id"]}>
             <Product id={item["id"]} url={item["url"]}></Product>
           </Grid>
         ))}
