@@ -191,3 +191,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+OSCAR_DEFAULT_CURRENCY = 'CAD'
+
+OSCAR_CURRENCY_FORMAT = {
+    'CAD': {
+        'currency_digits': False,
+        'format_type': "accounting",
+        'format': u'¤\xa0#,##0.000',
+    },
+}

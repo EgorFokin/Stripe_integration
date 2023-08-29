@@ -1,35 +1,13 @@
-import { useEffect, useState } from "react";
-
-const API_HOST = "http://localhost:8000";
-
-let _csrfToken: string = "";
-
-async function getCsrfToken() {
-  if (!_csrfToken) {
-    const response = await fetch(`${API_HOST}/csrf/`, {
-      credentials: "include",
-    });
-    const data = await response.json();
-    _csrfToken = data.csrfToken;
-  }
-  return _csrfToken;
-}
+import ProductGrid from "./Components/ProductGrid";
+import NavTab from "./Components/NavTab";
 
 const App = () => {
-  const [basket, setBasket] = useState("");
-  async function getBasket() {
-    const response = await fetch(`${API_HOST}/api/basket/`, {
-      method: "GET",
-      headers: {},
-      credentials: "include",
-    });
-    const data = await response.json();
-    setBasket(JSON.stringify(data));
-  }
-  useEffect(() => {
-    getBasket();
-  });
-  return <>{basket}</>;
+  return (
+    <>
+      <NavTab />
+      <ProductGrid />
+    </>
+  );
 };
 
 export default App;
