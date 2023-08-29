@@ -37,11 +37,8 @@ const CartItem = ({
   async function removeFromCart() {
     await fetch(`${url}`, {
       method: "DELETE",
-      cache: "default",
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: {},
     });
     onDeleteItem();
   }

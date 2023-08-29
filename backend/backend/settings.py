@@ -99,9 +99,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ['http://localhost:5173', "http://localhost:51204"]
+CORS_ORIGIN_WHITELIST = ['http://localhost:5173']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173', "http://localhost:51204"]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
 
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
@@ -201,3 +201,7 @@ OSCAR_CURRENCY_FORMAT = {
         'format': u'¤\xa0#,##0.000',
     },
 }
+
+STRIPE_API_KEY = 'sk_test_51NjraqLcmHUSGsO0aGI27PSKXGRkU20d8KJ1beHZK2JClr4aMxEwBLVdZ8hNaoohP29kgimUOk0TxpnYaNBKRb0k00PiNBqXhv'
+
+OSCAR_ALLOW_ANON_CHECKOUT = True

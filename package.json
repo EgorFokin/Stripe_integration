@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.6",
     "@mui/material": "^5.14.6",
+    "@stripe/stripe-js": "^2.1.0",
     "bootstrap": "^5.3.1"
   }
 }

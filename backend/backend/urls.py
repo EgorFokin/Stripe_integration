@@ -20,9 +20,6 @@ from django.apps import apps
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('csrf/', views.csrf),
-    path('ping/', views.ping),
+    path("create-checkout-session", views.create_checkout_session),
     path("api/", include("oscarapi.urls")),
-    path('', include(apps.get_app_config('oscar').urls[0])),
 ]
