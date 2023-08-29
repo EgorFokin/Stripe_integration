@@ -56,6 +56,6 @@
 
 # Project Architecture
 
-![Alt text](image.png)
+![Alt text](ProjectArchitectureImg.png)
 
-![Alt text](image-1.png)
+![Alt text](CheckoutProcessImg.png)
