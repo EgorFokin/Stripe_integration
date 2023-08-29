@@ -28,6 +28,7 @@ const Cart = () => {
   }
 
   async function checkout() {
+    retrivecartItems();
     if (cartItems.length === 0) return;
     setCheckoutLoading(true);
     let response = await fetch(`${import.meta.env.VITE_API_HOST}/api/basket/`, {

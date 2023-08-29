@@ -53,3 +53,9 @@
 6. Conduct testing
 7. Make documentation
 8. Publish the project on github
+
+# Project Architecture
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
